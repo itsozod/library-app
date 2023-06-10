@@ -46,27 +46,6 @@ addBtn.addEventListener('click', () => {
 // Library array
 let myLibrary = [];
 
-const defaultBook = new Book ('Harry Potter and the Deathly Hallows', 'J.K. Rowling', 607, false);
-
-Book.prototype.sayName = function() {
-  let libraryContainer = document.querySelector('#card-container');
-  let bookCard = document.createElement('div');
-  bookCard.setAttribute('class', 'card');
-  bookCard.innerHTML = `
-      <h2>Book</h2>
-      <p><strong>Name:</strong> ${this.name}</p>
-      <p><strong>Author:</strong> ${this.author}</p>
-      <p><strong>Pages:</strong> ${this.page}</p>
-      <p><strong>Status:</strong> <button id="read-btn">${this.read ? 'Read!' : 'Not read!'}</button></p>
-      <button id="delete-card" onclick="removeBook()">Delete</button>
-      <button id="toggleRead" onclick="toggle()"></button>
-  `;
-  myLibrary.push(this);
-  render();
-  libraryContainer.appendChild(bookCard);
-};
-
-
 // Book function
 function Book(name, author, page, read) {
     this.name = name;
