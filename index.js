@@ -8,6 +8,7 @@ const authorError = document.querySelector('#authorError');
 const pageError = document.querySelector('#pageError');
 const addBtn = document.querySelector('.add-btn');
 const submitBtn = document.querySelector('#submit-btn');
+const emptyBtn = document.querySelector('.empty-lib');
 
 // Preventing default submit button and showing error message if the inputs are left empty
 myForm.addEventListener('submit', function(event) {
@@ -42,6 +43,8 @@ addBtn.addEventListener('click', () => {
       formContainer.style.display = 'flex';
     }
 });
+
+
 
 // Library array
 let myLibrary = [];
@@ -84,6 +87,7 @@ Book.prototype.removeBook = function() {
         <button id="toggleRead">${book.read ? 'Toggle Unread' : 'Toggle Read'}</button>
       `;
       libraryEl.appendChild(bookEl);
+      emptyBtn.style.display = "none";
   
       let readBtn = bookEl.querySelector('#read-btn');
       let deleteBtn = bookEl.querySelector('#delete-card');
@@ -98,6 +102,7 @@ Book.prototype.removeBook = function() {
       // button to remove book, related to removeBook function
       deleteBtn.addEventListener('click', function() {
         book.removeBook();
+        emptyBtn.style.display = "flex";
         console.log('Book is deleted');
         render();
       });
@@ -137,7 +142,7 @@ function addBookToLibrary() {
     let readSelect = document.querySelector('#read');
     let read = readSelect.value === 'Read!';
 
-    if (name && author && page > 1) {
+    if (name && author && page > 0) {
     let newBook = new Book(name, author, page, read);
     myLibrary.push(newBook);
     console.log(myLibrary);
